@@ -4,5 +4,10 @@ yfinance
 numpy
 pandas
 networkx
+matplotlib
+math
+io
+base64
+sys
 
 
