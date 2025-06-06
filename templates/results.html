@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <meta charset="UTF-8" />
+    <title>Option Price Result</title>
+</head>
+<body>
+    <header class="main-header">
+        <h1>Option Pricing Result</h1>
+    </header>   
+    <p>Option type: <strong>{{ option_type.capitalize() }}</strong></p>
+    <p>Spot Price: <strong>{{ S }}</strong></p>
+    <p>Strike Price: <strong>{{ K }}</strong></p>
+    <p>Time to Maturity: <strong>{{ T }} years</strong></p>
+    <p>Volatility: <strong>{{ sigma }}</strong></p>
+    <p>Risk-free Rate: <strong>{{ r }} %</strong></p>
+    <h3>Calculated Option Prices</h3>
+    <p>Black-Scholes Price: <strong>{{ price1 }}</strong></p>
+    <p>Binomial Tree Price: <strong>{{ price2 }}</strong></p>
+    <h3>Binomial Tree Visualization</h3>
+    <img src="data:image/png;base64,{{ tree_image }}" alt="Binomial Tree">
+    
+    <h3>Greeks (Black-Scholes)</h3>
+    <table border="1" cellpadding="6" cellspacing="0" style="border-collapse: collapse; margin-top: 10px;" class = "center">
+    <thead style="background-color: #f2f2f2;">
+        <tr>
+        <th style="padding: 8px;">Greek</th>
+        <th style="padding: 8px;">Value</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for greek, value in greeks.items() %}
+        <tr>
+        <td style="padding: 8px;"><strong title="{{ greek_descriptions[greek] }}">{{ greek }}</strong></td>
+        <td style="padding: 8px;">{{ '%.4f' | format(value) }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+    </table>
+    <h3>Greek Graphs</h3>
+
+    <h4>Delta</h4>
+    <img src="data:image/png;base64,{{ delta_plot }}" alt="Delta plot">
+
+    <h4>Gamma</h4>
+    <img src="data:image/png;base64,{{ gamma_plot }}" alt="Gamma plot">
+
+    <h4>Theta</h4>
+    <img src="data:image/png;base64,{{ theta_plot }}" alt="Theta plot">
+
+    <h4>Vega</h4>
+    <img src="data:image/png;base64,{{ vega_plot }}" alt="Vega plot">
+
+    <h4>Rho</h4>
+    <img src="data:image/png;base64,{{ rho_plot }}" alt="Rho plot">
+    <h2>Option Pricing Inputs</h2>
+<ul>
+    
+</ul>
+
+
+    <br>
+    <a href="/">Back to input</a>
+</body>
+</html>

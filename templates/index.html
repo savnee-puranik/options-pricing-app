@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Option Pricing Model</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <script>
+        function toggleForm(mode) {
+            document.getElementById("manual-form").style.display = mode === "manual" ? "block" : "none";
+            document.getElementById("ticker-form").style.display = mode === "ticker" ? "block" : "none";
+        }
+    </script>
+</head>
+<body>
+    <header class="main-header">
+        <h1>Option Pricing Model</h1>
+    </header>
+
+    <div>
+        <p>How would you like to input data?</p>
+        <button onclick="toggleForm('manual')">Manually Enter Values</button>
+        <button onclick="toggleForm('ticker')">Enter Stock Ticker</button>
+    </div>
+
+    <br />
+
+    <!-- Manual Input Form -->
+    <form method="POST" action="/price" id="manual-form" style="display:none;">
+        <input type="hidden" name="input_mode" value="manual" />
+        <label>Spot Price (S): <input type="number" step="any" name="S" required></label><br />
+        <label>Strike Price (K): <input type="number" step="any" name="K" required></label><br />
+        <label>Time to Maturity (T, in years): <input type="number" step="any" name="T" required></label><br />
+        <label>Volatility (sigma): <input type="number" step="any" name="sigma" required></label><br />
+        <label>Risk-free Rate (r): <input type="number" step="any" name="r" required></label><br />
+        <label>Option Type:
+            <select name="option_type" required>
+                <option value="call">Call</option>
+                <option value="put">Put</option>
+            </select>
+        </label><br /><br />
+        <button type="submit">Calculate Price</button>
+    </form>
+
+    <!-- Ticker-Based Form -->
+    <form method="POST" action="/price" id="ticker-form" style="display:none;">
+        <input type="hidden" name="input_mode" value="ticker" />
+        <label>Stock Ticker Symbol: <input type="text" name="ticker" required /></label><br />
+        <label>Strike Price (K): <input type="number" step="any" name="K" required></label><br />
+        <label>Time to Maturity (T, in years): <input type="number" step="any" name="T" required></label><br />
+        <label>Option Type:
+            <select name="option_type" required>
+                <option value="call">Call</option>
+                <option value="put">Put</option>
+            </select>
+        </label><br /><br />
+        <button type="submit">Calculate Price</button>
+    </form>
+</body>
+</html>
+
+
+<!--
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <meta charset="UTF-8" />
+    <title>Options Pricing Model</title>
+</head>
+<body>
+
+<header class="main-header">
+    <h1>Option Pricing Model</h1>
+    </header>    
+     
+    <form method="POST" action="/price">
+        <label>Spot Price (S): <input type="number" step="any" name="S" required></label><br />
+        <label>Strike Price (K): <input type="number" step="any" name="K" required></label><br />
+        <label>Time to Maturity (T, in years): <input type="number" step="any" name="T" required></label><br />
+        <label>Volatility (sigma): <input type="number" step="any" name="sigma" required></label><br />
+        <label>Risk-free Rate (r): <input type="number" step="any" name="r" required></label><br />
+        <label>Option Type:
+            <select name="option_type" required>
+                <option value="call">Call</option>
+                <option value="put">Put</option>
+            </select>
+        </label><br /><br />
+        <button type="submit">Calculate Price</button>
+    </form>
+  
+
+</body>
+
+
+
+</html>
+-->
