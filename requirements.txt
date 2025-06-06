@@ -1,13 +1,9 @@
 Flask
-scipy
-yfinance
 numpy
-pandas
 networkx
 matplotlib
-math
-io
-base64
-sys
+scipy
+yfinance
+
 
 
