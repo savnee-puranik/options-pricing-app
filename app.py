@@ -12,6 +12,7 @@ import base64
 import sys
 print(sys.executable)
 import yfinance as yf
+import os
 
 app = Flask(__name__)
 
